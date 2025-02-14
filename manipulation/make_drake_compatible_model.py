@@ -437,7 +437,8 @@ def _convert_mjcf(
                 texture_path = os.path.join(base_path, texture_url)
 
             if not os.path.exists(texture_path):
-                raise FileNotFoundError(f"The file {texture_path} does not exist.")
+                # raise FileNotFoundError(f"The file {texture_path} does not exist.")
+                pass
 
             texture_paths[texture_name] = texture_path
             texture_element.getparent().remove(texture_element)
@@ -470,7 +471,8 @@ def _convert_mjcf(
             if texture_name in texture_paths:
                 texture_path = texture_paths[texture_name]
                 if not os.path.exists(texture_path):
-                    raise FileNotFoundError(f"Texture file not found: {texture_path}")
+                    continue
+                    # raise FileNotFoundError(f"Texture file not found: {texture_path}")
                 image = Image.open(texture_path)
                 props["image"] = image
         materials[material_element.attrib["name"]] = (
